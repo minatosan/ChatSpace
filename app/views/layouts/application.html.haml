@@ -1,49 +1,13 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content:"text/html charset=UTF-8", http-equiv:"Content-Type"}/
     %title ChatSpace
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    .contents
-      .side
-        .side--header
-          .side--header--box 
-            .side--header__user user1
-            .side--header__icon
-              =link_to "https://www.facebook.com/", class: "contents__btn contents__btn--facebook" do
-                = fa_icon "pencil-square-o", class: "side--header__icon1"
-              =link_to "https://twitter.com/", class: "contents__btn contents__btn--twitter" do
-                = fa_icon 'gear', class: "side--header__icon2"
-        .side--groups         
-          .side--groups__group
-            .side--groups__group__name   group1
-            .side--groups__group__message あああああ
-      .chat 
-        .chat--header
-          .chat--header-__name__box
-            .chat--header__name current_group
-            .chat--header__member member:hatena
-          .chat--header__edit
-            =link_to 'Edit','http://google.co.jp'
-            
-        .chat--message  
-          .chat--message__box 
-            .chat--message__upper
-              %p.chat--message__upper__user kari
-              %p.chat--message__upper__time 21
-            .chat--message__text あああああ
-        .chat--form
-          .chat--form--input--box
-            =form_tag('/message', method: :post)  do
-              %input.chat--form--input--box__text(placeholder="type a message" type="text" name="message")
-              %label.chat--form--input--box__image
-                = fa_icon 'photo', class: "side--header__icon2"
-                %input.chat--form--input--box__image__file(placeholder="Image Url" type="file" name="image")
-          %input.chat--form--submit(type="submit" value="Send")
             
 
     = yield
