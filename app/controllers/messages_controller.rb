@@ -1,4 +1,7 @@
 class MessagesController < ApplicationController
+
+  
+
   def index
    find_group
   end
@@ -11,5 +14,6 @@ class MessagesController < ApplicationController
    @group=Group.all
   end
 
+  
 
 end
