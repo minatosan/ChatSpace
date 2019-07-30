@@ -3,6 +3,7 @@ class GroupsController < ApplicationController
 
   def index
     find_group
+    @message=Message.new
   end
 
   def new
@@ -42,6 +43,6 @@ class GroupsController < ApplicationController
   end
 
   def find_group
-    @group=Group.all
+    @group=Group.find(1)
   end
 end
