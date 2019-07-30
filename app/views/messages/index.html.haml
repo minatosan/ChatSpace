@@ -3,17 +3,13 @@
   .chat 
     .chat--header
       .chat--header-__name__box
-        .chat--header__name current_group
-        .chat--header__member member:hatena
+        .chat--header__name @group
+        .chat--header__member @group
       .chat--header__edit
         /=link_to 'Edit', edit_group_path(@group)
         
     .chat--message  
-      .chat--message__box 
-        .chat--message__upper
-          %p.chat--message__upper__user kari
-          %p.chat--message__upper__time 21
-        .chat--message__text あああああ
+      = render @messages
     .chat--form
       .chat--form--input--box
         =form_for [@group,@message] do |f|
