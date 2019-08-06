@@ -1,0 +1,23 @@
+=render 'layouts/shared/side'
+
+.contents
+ 
+  .chat 
+    .chat--header
+      .chat--header-__name__box
+        .chat--header__name @group
+        .chat--header__member @group
+      .chat--header__edit
+        /=link_to 'Edit', edit_group_path(@group)
+        
+    .chat--message  
+      = render @messages
+    .chat--form
+      .chat--form--input--box
+        =form_for [@group,@message] do |f|
+          =f.text_field :text,class:'chat--form--input--box__text',placeholder:"type a message"
+          .form__mask
+            = f.label :image_url, class: 'chat--form--input--box__image' do
+              = fa_icon 'picture-o', class: 'icon'
+              = f.file_field :image_url, class: 'hidden'
+          = f.submit 'Send', class: 'form__submit'
