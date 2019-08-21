@@ -1,14 +1,14 @@
-=render 'layouts/shared/side'
+=render 'shared/side'
 
 .contents
  
   .chat 
     .chat--header
       .chat--header-__name__box
-        .chat--header__name @group
-        .chat--header__member @group
+        .chat--header__name   #{@group.name}
+        %ul.chat--header__member Member:  #{@group.users.all.find(@group.user_ids==User.ids).name} 
       .chat--header__edit
-        /=link_to 'Edit', edit_group_path(@group)
+        =link_to 'Edit', edit_group_path(@group)
         
     .chat--message  
       = render @messages
@@ -16,8 +16,8 @@
       .chat--form--input--box
         =form_for [@group,@message] do |f|
           =f.text_field :text,class:'chat--form--input--box__text',placeholder:"type a message"
-          .form__mask
-            = f.label :image_url, class: 'chat--form--input--box__image' do
+          .chat--form__mask
+            = f.label :image, class: 'chat--form--input--box__image' do
               = fa_icon 'picture-o', class: 'icon'
-              = f.file_field :image_url, class: 'hidden'
-          = f.submit 'Send', class: 'form__submit'
+              = f.file_field :image, class: 'chat--form--input--box__image__file'
+          = f.submit 'Send', class: 'chat--form__submit'
