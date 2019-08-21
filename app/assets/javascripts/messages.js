@@ -45,12 +45,9 @@ $(function(){
       $('.chat--message').animate({
           scrollTop: position
         });
-    
-      
       })
       .fail(function(){
       alert('error');
-      console.log("test");
       $('.chat--form__submit').attr('disabled', false);
       })
 })

@@ -1,8 +1,6 @@
 class GroupsController < ApplicationController
-  #before_action :set_group, only: [:edit, :update]
-
+  before_action :set_group, only: [:edit, :update]
   def index
-    #find_group
     @message=Message.new
   end
 
@@ -39,10 +37,7 @@ class GroupsController < ApplicationController
 
   def set_group
     @group=Group.find(1)
-    #@group = Group.find(params[:id])
+    
   end
 
-  #def find_group
-    #@group=Group.find(1)
-  #end
 end
