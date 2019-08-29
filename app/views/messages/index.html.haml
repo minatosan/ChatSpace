@@ -5,8 +5,12 @@
   .chat 
     .chat--header
       .chat--header-__name__box
-        .chat--header__name   #{@group.name}
-        %ul.chat--header__member Member:  #{@group.users.all.find(@group.user_ids==User.ids).name} 
+        .chat--header__name   
+          #{@group.name}
+        %ul.chat--header__member 
+          member: 
+          - @group.users.each do |user|   
+            =user.name
       .chat--header__edit
         =link_to 'Edit', edit_group_path(@group)
         

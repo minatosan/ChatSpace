@@ -91,6 +91,9 @@
     .chat-group-user__name {
       float: left;
     }
+    .chat-group-user__names{
+      float:left;
+    }
 
     .chat-group-user__btn {
       float: right;
@@ -114,4 +117,11 @@
     background-color: #38aef0;
     border: 0;
   }
+}
+.chat-group-form__field--right{
+  margin-top:30px;
+}
+
+.chat-group-form__field--left{
+  margin-top:30px;
 }
