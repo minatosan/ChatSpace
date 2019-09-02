@@ -3,7 +3,7 @@ $(function(){
     var text = message.text ? `${ message.text }` : "";
     var image = message.image ? `<img src= ${ message.image }>` : "";
 
-    var html = `<div class= "chat--message__box">
+    var html = `<div class= "chat--message__box" data-id="${message.id}">
                   <div class="chat--message__upper">
                     <p class="chat--message__upper__user">
                      ${ message.user_name }
@@ -14,7 +14,7 @@ $(function(){
                   </div>
                   <div class="chat--message__text">
                     <p class="chat--message__content">
-                      ${text}
+                      ${text} 
                     </p>
                     <img class="chat--form__image">
                       ${image}
@@ -51,5 +51,29 @@ $(function(){
       $('.chat--form__submit').attr('disabled', false);
       })
 })
-})
 
+var reloadMessages = function () {
+  var url = location.href ;
+  if (url.match(/\/groups\/\d+\/messages/)){
+    var last_message_id = $('.chat--message__box:last').data("id"); 
+    $.ajax({ 
+      url: "api/messages", 
+      type: 'get', 
+      dataType: 'json', 
+      data: {last_id: last_message_id} 
+    })
+    .done(function (messages) { 
+      var insertHTML = '';//追加するHTMLの入れ物を作る
+      messages.forEach(function (message) {
+        insertHTML = buildHTML(message); 
+        $('.chat--message').append(insertHTML);
+      })
+      $('.chat--message').animate({scrollTop: $('.chat--message')[0].scrollHeight}, 'fast');
+    })
+    .fail(function () {
+      alert('自動更新に失敗しました');
+    });
+  }
+};
+setInterval(reloadMessages, 5000);
+});
