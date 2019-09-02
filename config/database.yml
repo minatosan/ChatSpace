@@ -47,9 +47,15 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+#production:
+  #<<: *default
+  #database: ChatSpeace_production
+  #username: ChatSpeace
+  #password: <%= ENV['CHAT-SPACE_DATABASE_PASSWORD'] %>
+
 production:
   <<: *default
   database: ChatSpeace_production
-  username: ChatSpeace
-  password: <%= ENV['CHAT-SPACE_DATABASE_PASSWORD'] %>
-
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
