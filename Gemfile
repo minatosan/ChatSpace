@@ -80,3 +80,7 @@ gem 'carrierwave'
 gem 'jquery-rails'
 
 gem 'pry'
+
+group :production do
+  gem 'unicorn', '5.4.1'
+end
