@@ -54,6 +54,7 @@ $(function(){
 
 var reloadMessages = function () {
   var url = location.href ;
+  var last_message =$('.chat--message__box:last').data("id");
   if (url.match(/\/groups\/\d+\/messages/)){
     var last_message_id = $('.chat--message__box:last').data("id"); 
     $.ajax({ 
@@ -65,11 +66,12 @@ var reloadMessages = function () {
     .done(function (messages) { 
       var insertHTML = '';//追加するHTMLの入れ物を作る
       messages.forEach(function (message) {
+        if (message.id > last_message){
         insertHTML = buildHTML(message); 
         $('.chat--message').append(insertHTML);
-      })
-      $('.chat--message').animate({scrollTop: $('.chat--message')[0].scrollHeight}, 'fast');
-    })
+        $('.chat--message').animate({scrollTop: $('.chat--message')[0].scrollHeight}, 'fast');
+      }      
+  })})
     .fail(function () {
       alert('自動更新に失敗しました');
     });
